@@ -2044,13 +2044,13 @@
                 if (btn) {
                     btn.addEventListener('click', function() {
                         if (this.dataset.revealed) return;
-                        const digits = [2, 0, 1, 2, 9, 8, 3, 4, 9, 9];
+                        const digits = [8, 0, 0, 7, 7, 8, 3, 5, 7, 2];
                         const num = digits.join('');
                         const formatted = '+1 (' + num.slice(0,3) + ') ' + num.slice(3,6) + '-' + num.slice(6);
                         this.innerHTML = formatted;
                         this.dataset.revealed = 'true';
                         this.onclick = function() {
-                            window.location.href = 'tel:+12012983499';
+                            window.location.href = 'tel:+18007783572';
                         };
                     });
                 }
