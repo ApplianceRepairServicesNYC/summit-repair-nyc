@@ -1068,10 +1068,10 @@
                         </div>
                         <li class="submenu-toggle" id="serviceAreasToggle">Service Areas</li>
                         <div class="service-areas-submenu" id="serviceAreasSubmenu">
-                            <li><span class="nav-nolink">Manhattan</span></li>
-                            <li><span class="nav-nolink">Brooklyn</span></li>
-                            <li><span class="nav-nolink">Queens</span></li>
-                            <li><span class="nav-nolink">Bronx</span></li>
+                            <li><a href="#" class="nav-nolink" onclick="scrollToServiceAreas(0); return false;">Manhattan</a></li>
+                            <li><a href="#" class="nav-nolink" onclick="scrollToServiceAreas(1); return false;">Brooklyn</a></li>
+                            <li><a href="#" class="nav-nolink" onclick="scrollToServiceAreas(3); return false;">Queens</a></li>
+                            <li><a href="#" class="nav-nolink" onclick="scrollToServiceAreas(2); return false;">Bronx</a></li>
                         </div>
                     </ul>
                 </div>
@@ -1085,7 +1085,7 @@
             <h1>Expert Summit Appliance Repair NYC</h1>
             <p>Same-Day Service • Factory-Trained Technicians • All NYC</p>
             <div class="hero-buttons">
-                <button class="btn" id="heroScheduleBtn" onclick="document.getElementById('cfContactFormSection').classList.add('active'); document.getElementById('cfContactFormSection').scrollIntoView({behavior: 'smooth', block: 'center'});">Schedule Your Repair</button>
+                <button class="btn" id="heroScheduleBtn" onclick="document.getElementById('cfContactFormSection').classList.add('active'); document.getElementById('cfContactFormSection').scrollIntoView({behavior: 'smooth', block: 'center'});">Book Online</button>
                 <button class="btn btn-secondary" onclick="openModal('reviewsModal');">Read Reviews</button>
             </div>
         </div>
@@ -1931,6 +1931,32 @@
         </div>
     </footer>
     <script>
+        function scrollToServiceAreas(boroughIndex) {
+            // Close navigation dropdown
+            var servicesMenu = document.getElementById('servicesMenu');
+            if (servicesMenu) servicesMenu.classList.remove('active');
+
+            // Scroll to service areas section
+            var saSection = document.getElementById('sa-service-areas');
+            if (saSection) saSection.scrollIntoView({behavior: 'smooth', block: 'start'});
+
+            // Open the dropdown content
+            var saDropdown = document.getElementById('saDropdownContent');
+            var saToggleBtn = document.getElementById('saToggleBtn');
+            if (saDropdown) saDropdown.style.maxHeight = '2000px';
+            if (saToggleBtn) saToggleBtn.textContent = 'Hide Service Areas';
+
+            // Select the appropriate borough tab
+            setTimeout(function() {
+                var tabs = document.querySelectorAll('.sa-borough-tab');
+                tabs.forEach(function(tab, index) {
+                    if (parseInt(tab.dataset.borough) === boroughIndex) {
+                        tab.click();
+                    }
+                });
+            }, 300);
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             const servicesMenu = document.getElementById('servicesMenu');
             const servicesToggle = document.getElementById('servicesToggle');
