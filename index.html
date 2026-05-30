@@ -1550,6 +1550,79 @@
             </div>
         </div>
     </section>
+<section class="trust-badges-section">
+        <h2>Certified Summit Appliance Repair Service</h2>
+        <div class="trust-badges-container">
+            <div class="trust-badge guarantee-badge guarantee-background">
+                <i class="fas fa-money-bill-alt icon"></i>
+                <div class="title">Money-Back Guarantee</div>
+                <div class="description">Full refund if we can't repair your appliance.</div>
+                <button class="toggle-button" data-title="Money-Back Guarantee" data-details="We understand the frustration of dealing with companies that charge for repairs they can't complete. That's why we offer a 100% Money-Back Guarantee. If we are unable to complete your appliance repair, you will receive a full refund—no questions asked.">Learn More</button>
+            </div>
+            <div class="trust-badge experience-badge experience-background">
+                <i class="fas fa-tools icon"></i>
+                <div class="title">25+ Years Experience</div>
+                <div class="description">Expert Summit repair since 1999.</div>
+                <button class="toggle-button" data-title="25+ Years Experience" data-details="With over two decades of experience, our team has mastered Summit appliance repair. We've tackled every challenge, from vintage models to the latest smart appliances, ensuring your appliances run smoothly.">Learn More</button>
+            </div>
+            <div class="trust-badge same-day-badge same-day-background">
+                <i class="fas fa-clock icon"></i>
+                <div class="title">Same-Day Service</div>
+                <div class="description">Fast repairs in hours, not days.</div>
+                <button class="toggle-button" data-title="Same-Day Service" data-details="We know a broken appliance disrupts your daily routine, so we prioritize speed without sacrificing quality. Our same-day service ensures technicians arrive promptly, equipped to diagnose and fix your Summit appliance in hours.">Learn More</button>
+            </div>
+            <div class="trust-badge complete-day-badge complete-day-background">
+                <i class="fas fa-check-circle icon"></i>
+                <div class="title">85% Same-Day Repairs</div>
+                <div class="description">Most repairs done the day you call.</div>
+                <button class="toggle-button" data-title="85% Same-Day Repairs" data-details="Our efficiency sets us apart—85% of our repairs are completed the same day you reach out. We stock common Summit parts and equip our technicians with advanced tools to resolve issues on the spot.">Learn More</button>
+            </div>
+            <div class="trust-badge warranty-badge warranty-background">
+                <i class="fas fa-shield-alt icon"></i>
+                <div class="title">Warranty on All Repairs</div>
+                <div class="description">All repairs backed by our warranty.</div>
+                <button class="toggle-button" data-title="Warranty on All Repairs" data-details="Every repair we perform comes with a comprehensive warranty, ensuring your peace of mind. If an issue arises from our work, we'll return to fix it at no extra cost.">Learn More</button>
+            </div>
+            <div class="trust-badge background-checked-badge background-checked-background">
+                <i class="fas fa-user-check icon"></i>
+                <div class="title">Background Checked</div>
+                <div class="description">Screened for your safety.</div>
+                <button class="toggle-button" data-title="Background Checked Technicians" data-details="Your safety is our priority, which is why all our technicians undergo thorough background checks. We hire only trustworthy professionals who are not only skilled but also respectful of your home.">Learn More</button>
+            </div>
+            <div class="trust-badge weekend-badge weekend-background">
+                <i class="fas fa-calendar-alt icon"></i>
+                <div class="title">Weekend Service</div>
+                <div class="description">Repairs available on weekends.</div>
+                <button class="toggle-button" data-title="Weekend Service Available" data-details="Life doesn't pause on weekends, and neither do we. Our weekend service ensures you can schedule repairs at your convenience, without disrupting your workweek.">Learn More</button>
+            </div>
+            <div class="trust-badge parts-badge parts-background">
+                <i class="fas fa-cogs icon"></i>
+                <div class="title">Genuine Summit Parts</div>
+                <div class="description">OEM parts at fair prices.</div>
+                <button class="toggle-button" data-title="Genuine Summit Parts" data-details="We use only genuine Summit parts, ensuring optimal performance and longevity. Our transparent pricing means you get high-quality components without inflated costs.">Learn More</button>
+            </div>
+            <div class="trust-badge insured-badge insured-background">
+                <i class="fas fa-umbrella icon"></i>
+                <div class="title">Fully Insured</div>
+                <div class="description">Coverage for property damages.</div>
+                <button class="toggle-button" data-title="Fully Insured" data-details="We are fully insured for property damages, providing you with peace of mind during every repair. Our comprehensive insurance coverage ensures that any unexpected incidents are handled responsibly.">Learn More</button>
+            </div>
+            <div class="trust-badge safety-badge safety-background">
+                <i class="fas fa-hard-hat icon"></i>
+                <div class="title">Safety & Protection</div>
+                <div class="description">Floor & area protection used.</div>
+                <button class="toggle-button" data-title="Safety & Protection" data-details="We prioritize your safety and the protection of your home. Our technicians use floor coverings and area protection to prevent any damage during repairs.">Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Badge Modal -->
+    <div class="badge-modal" id="badgeModal">
+        <button class="badge-modal-close" onclick="closeBadgeModal()">&times;</button>
+        <h3 class="badge-modal-title" id="badgeModalTitle"></h3>
+        <div class="badge-modal-content" id="badgeModalContent"></div>
+    </div>
+    <div class="badge-modal-overlay" id="badgeModalOverlay" onclick="closeBadgeModal()"></div>
     <section class="alt" id="contact">
         <div class="container">
             <section id="sa-service-areas">
@@ -1891,8 +1964,8 @@
                     <h3>Quick Links</h3>
                     <ul>
                         <li><a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">Home</a></li>
-                        <li><a href="#" onclick="scrollToServiceAreas(0); return false;">Service Areas</a></li>
-                        <li><a href="#" onclick="document.getElementById('cfContactFormSection').classList.add('active'); document.getElementById('cfContactFormSection').scrollIntoView({behavior: 'smooth', block: 'center'}); return false;">Schedule Service</a></li>
+                        <li><a href="#" onclick="openModal('reviewsModal'); return false;">Reviews</a></li>
+                        <li><a href="#faq">FAQ</a></li>
                     </ul>
                 </div>
             </div>
@@ -2251,6 +2324,122 @@
             background: rgba(255,255,255,0.15);
         }
 
+        /* Trust Badges */
+        .trust-badges-section {
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        .trust-badges-section h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #003087;
+            font-size: 28px;
+        }
+        .trust-badges-container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: stretch;
+            flex-wrap: nowrap;
+            gap: 12px;
+            padding: 20px 10px;
+            background-color: #fff;
+            max-width: 1400px;
+            margin: 0 auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .trust-badges-container::-webkit-scrollbar { display: none; }
+        .trust-badge {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            flex: 0 0 auto;
+            width: 160px;
+            min-height: 220px;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+            cursor: pointer;
+            background-color: #ffffff;
+        }
+        .trust-badge:hover {
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+            border-color: #003087;
+        }
+        .trust-badge.experience-background,
+        .trust-badge.same-day-background,
+        .trust-badge.guarantee-background,
+        .trust-badge.complete-day-background,
+        .trust-badge.warranty-background,
+        .trust-badge.background-checked-background,
+        .trust-badge.weekend-background,
+        .trust-badge.parts-background,
+        .trust-badge.insured-background,
+        .trust-badge.safety-background { background-color: #e8f1fa; }
+        .trust-badge .icon { font-size: 28px; margin-bottom: 8px; color: #003087; }
+        .trust-badge:hover .icon { color: #e31837; }
+        .trust-badge .title { font-size: 13px; font-weight: bold; color: #333; margin: 0 0 8px; }
+        .trust-badge .description { font-size: 11px; color: #555; line-height: 1.3; margin-bottom: 8px; white-space: normal; }
+        .trust-badge .toggle-button {
+            margin-top: auto;
+            padding: 8px 12px;
+            border: none;
+            background: linear-gradient(45deg, #003087, #e31837);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+            width: 100%;
+        }
+        .trust-badge .toggle-button:hover {
+            background: linear-gradient(45deg, #002266, #c41530);
+            transform: translateY(-2px);
+        }
+        .badge-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 400px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            z-index: 10000;
+            padding: 24px;
+        }
+        .badge-modal.active { display: block; }
+        .badge-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 9999;
+        }
+        .badge-modal-overlay.active { display: block; }
+        .badge-modal-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+        .badge-modal-title { font-size: 18px; font-weight: bold; margin-bottom: 12px; color: #003087; }
+        .badge-modal-content { font-size: 14px; line-height: 1.6; color: #444; }
+
     </style>
     <script>var emailjs=function(e){"use strict";class t{constructor(){let e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:0,t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"Network Error";this.status=e,this.text=t}}const i={origin:"https://api.emailjs.com",blockHeadless:!1,storageProvider:(()=>{if("undefined"!=typeof localStorage)return{get:e=>Promise.resolve(localStorage.getItem(e)),set:(e,t)=>Promise.resolve(localStorage.setItem(e,t)),remove:e=>Promise.resolve(localStorage.removeItem(e))}})()},r=e=>e?"string"==typeof e?{publicKey:e}:"[object Object]"===e.toString()?e:{}:{},o=function(e){let t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"https://api.emailjs.com";if(!e)return;const o=r(e);i.publicKey=o.publicKey,i.blockHeadless=o.blockHeadless,i.storageProvider=o.storageProvider,i.blockList=o.blockList,i.limitRate=o.limitRate,i.origin=o.origin||t},a=async function(e,r){let o=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{};const a=await fetch(i.origin+e,{method:"POST",headers:o,body:r}),s=await a.text(),n=new t(a.status,s);if(a.ok)return n;throw n},s=(e,t,i)=>{if(!e||"string"!=typeof e)throw"The public key is required. Visit https://dashboard.emailjs.com/admin/account";if(!t||"string"!=typeof t)throw"The service ID is required. Visit https://dashboard.emailjs.com/admin";if(!i||"string"!=typeof i)throw"The template ID is required. Visit https://dashboard.emailjs.com/admin/templates"},n=e=>e.webdriver||!e.languages||0===e.languages.length,l=()=>new t(451,"Unavailable For Headless Browser"),c=(e,t)=>{if((e=>!e.list?.length||!e.watchVariable)(e))return!1;((e,t)=>{if(!Array.isArray(e))throw"The BlockList list has to be an array";if("string"!=typeof t)throw"The BlockList watchVariable has to be a string"})(e.list,e.watchVariable);const i=(r=t,o=e.watchVariable,r instanceof FormData?r.get(o):r[o]);var r,o;return"string"==typeof i&&e.list.includes(i)},d=()=>new t(403,"Forbidden"),m=async(e,t,i)=>{if(!t.throttle||!i)return!1;((e,t)=>{if("number"!=typeof e||e<0)throw"The LimitRate throttle has to be a positive number";if(t&&"string"!=typeof t)throw"The LimitRate ID has to be a non-empty string"})(t.throttle,t.id);const r=t.id||e,o=await(async(e,t,i)=>{const r=Number(await i.get(e)||0);return t-Date.now()+r})(r,t.throttle,i);return o>0||(await i.set(r,Date.now().toString()),!1)},h=()=>new t(429,"Too Many Requests"),p=async(e,t,o,p)=>{const u=r(p),b=u.publicKey||i.publicKey,g=u.blockHeadless||i.blockHeadless,f=u.storageProvider||i.storageProvider,w={...i.blockList,...u.blockList},y={...i.limitRate,...u.limitRate};if(g&&n(navigator))return Promise.reject(l());if(s(b,e,t),(e=>{if(e&&"[object Object]"!==e.toString())throw"The template params have to be the object. Visit https://www.emailjs.com/docs/sdk/send/"})(o),o&&c(w,o))return Promise.reject(d());if(await m(location.pathname,y,f))return Promise.reject(h());const v={lib_version:"4.4.1",user_id:b,service_id:e,template_id:t,template_params:o};return a("/api/v1.0/email/send",JSON.stringify(v),{"Content-type":"application/json"})},u=async(e,t,o,p)=>{const u=r(p),b=u.publicKey||i.publicKey,g=u.blockHeadless||i.blockHeadless,f=i.storageProvider||u.storageProvider,w={...i.blockList,...u.blockList},y={...i.limitRate,...u.limitRate};if(g&&n(navigator))return Promise.reject(l());const v=(e=>"string"==typeof e?document.querySelector(e):e)(o);s(b,e,t),(e=>{if(!e||"FORM"!==e.nodeName)throw"The 3rd parameter is expected to be the HTML form element or the style selector of the form"})(v);const j=new FormData(v);return c(w,j)?Promise.reject(d()):await m(location.pathname,y,f)?Promise.reject(h()):(j.append("lib_version","4.4.1"),j.append("service_id",e),j.append("template_id",t),j.append("user_id",b),a("/api/v1.0/email/send-form",j))};var b={init:o,send:p,sendForm:u,EmailJSResponseStatus:t};return e.EmailJSResponseStatus=t,e.default=b,e.init=o,e.send=p,e.sendForm=u,Object.defineProperty(e,"__esModule",{value:!0}),e}({});emailjs.init({publicKey:'zfCrLmZU8eK9CuZcs'});</script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c124-171-7689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"f408497346e04e29b69182b74a219630","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
@@ -2398,8 +2587,28 @@
         if (modalOverlay) modalOverlay.addEventListener('click', closeAllModals);
 
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeAllModals();
+            if (e.key === 'Escape') {
+                closeAllModals();
+                closeBadgeModal();
+            }
         });
+
+        // Badge Modal Functions
+        document.querySelectorAll('.trust-badge .toggle-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const title = this.getAttribute('data-title');
+                const details = this.getAttribute('data-details');
+                document.getElementById('badgeModalTitle').textContent = title;
+                document.getElementById('badgeModalContent').textContent = details;
+                document.getElementById('badgeModal').classList.add('active');
+                document.getElementById('badgeModalOverlay').classList.add('active');
+            });
+        });
+
+        function closeBadgeModal() {
+            document.getElementById('badgeModal').classList.remove('active');
+            document.getElementById('badgeModalOverlay').classList.remove('active');
+        }
 
         var writeReviewBtn = document.getElementById('writeReviewBtn');
         if (writeReviewBtn) {
