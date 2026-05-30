@@ -1007,6 +1007,32 @@
             background: rgba(255,255,255,0.15);
         }
 
+    
+        .modal-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7); z-index: 9998; opacity: 0; transition: opacity 0.3s;
+        }
+        .modal-overlay.active { display: block; opacity: 1; }
+        .modal-card {
+            display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            background: white; border-radius: 15px; z-index: 9999; max-width: 800px; width: 90%;
+            max-height: 80vh; overflow: hidden; box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+        }
+        .modal-card.active { display: flex; flex-direction: column; }
+        .modal-header {
+            background: var(--red); color: white; padding: 20px 30px;
+            display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;
+        }
+        .modal-header h2 { margin: 0; font-size: 24px; color: white; }
+        .modal-close {
+            background: rgba(255,255,255,0.2); border: none; color: white; width: 40px; height: 40px;
+            border-radius: 50%; font-size: 24px; cursor: pointer; transition: all 0.3s;
+        }
+        .modal-close:hover { background: rgba(255,255,255,0.3); }
+        .modal-content { padding: 30px; overflow-y: auto; flex: 1; }
+        .modal-content h3 { color: var(--blue); margin: 20px 0 10px; }
+        .modal-content ul { padding-left: 20px; }
+        .modal-content li { margin: 8px 0; }
     </style>
 </head>
 <body>
@@ -1058,7 +1084,10 @@
         <div class="container">
             <h1>Expert Summit Appliance Repair NYC</h1>
             <p>Same-Day Service • Factory-Trained Technicians • All NYC</p>
-            <button class="btn" id="heroCallNow">Request Service Today</button>
+            <div class="hero-buttons">
+                <button class="btn" id="heroCallNow">Call Toll-Free</button>
+                <button class="btn btn-secondary" onclick="openModal('reviewsModal');">Read Reviews</button>
+            </div>
         </div>
     </section>
     <section class="alt">
@@ -1067,7 +1096,7 @@
             <div class="services-grid">
                 <div class="service" id="bosch-washer-repair">
                     <div class="service-image">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="120" height="120"> <rect x="15" y="10" width="70" height="80" rx="5" fill="#003087" stroke="#001a4d" stroke-width="2"/> <rect x="20" y="15" width="60" height="20" rx="2" fill="#e8e8e8"/> <circle cx="50" cy="58" r="22" fill="#e8e8e8" stroke="#ccc" stroke-width="2"/> <circle cx="50" cy="58" r="16" fill="#003087"/> <circle cx="50" cy="58" r="12" fill="#4a7cc9"/> <circle cx="50" cy="58" r="6" fill="#003087"/> <circle cx="30" cy="25" r="4" fill="#e41e26"/> <rect x="55" y="22" width="20" height="6" rx="2" fill="#ccc"/> </svg>
+                        <img src="assets/images/appliances/washer.webp" alt="Summit Washer Repair" width="120" height="120" style="object-fit: contain;">
                     </div>
                     <a href="#" class="learn-more-btn" onclick="toggleService(this); return false;">Washer Repair <span>Learn More</span></a>
                     <div class="service-types">
@@ -1120,9 +1149,9 @@
                 </div>
                 <div class="service" id="bosch-dryer-repair">
                     <div class="service-image">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="120" height="120"> <rect x="15" y="10" width="70" height="80" rx="5" fill="#003087" stroke="#001a4d" stroke-width="2"/> <rect x="20" y="15" width="60" height="20" rx="2" fill="#e8e8e8"/> <circle cx="50" cy="58" r="22" fill="#e8e8e8" stroke="#ccc" stroke-width="2"/> <circle cx="50" cy="58" r="16" fill="#333"/> <ellipse cx="50" cy="58" rx="10" ry="5" fill="#555" transform="rotate(45 50 58)"/> <ellipse cx="50" cy="58" rx="10" ry="5" fill="#555" transform="rotate(-45 50 58)"/> <circle cx="30" cy="25" r="4" fill="#4CAF50"/> <rect x="55" y="22" width="20" height="6" rx="2" fill="#ccc"/> </svg>
+                        <img src="assets/images/appliances/dryer.webp" alt="Summit Dryer Repair" width="120" height="120" style="object-fit: contain;">
                     </div>
-                    <a href="#" class="learn-more-btn" onclick="toggleService(this); return false;">Dryer Repair <span>Learn More</span></a>
+                    <a href="#" class="learn-more-btn" onclick="toggleService(this); return false;">Dryer Repair<span>Learn More</span></a>
                     <div class="service-types">
                         <h3>We Service All Types:</h3>
                         <ul>
@@ -1170,9 +1199,9 @@
                 </div>
                 <div class="service" id="bosch-oven-repair">
                     <div class="service-image">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="120" height="120"> <rect x="10" y="10" width="80" height="80" rx="4" fill="#003087" stroke="#001a4d" stroke-width="2"/> <rect x="15" y="15" width="70" height="15" rx="2" fill="#e8e8e8"/> <circle cx="25" cy="22" r="5" fill="#333"/> <circle cx="40" cy="22" r="5" fill="#333"/> <circle cx="55" cy="22" r="5" fill="#333"/> <circle cx="70" cy="22" r="5" fill="#333"/> <rect x="15" y="35" width="70" height="50" rx="2" fill="#1a1a1a"/> <rect x="20" y="40" width="60" height="40" rx="2" fill="#333"/> <rect x="25" y="45" width="50" height="30" rx="1" fill="#e41e26" opacity="0.3"/> <line x1="25" y1="55" x2="75" y2="55" stroke="#e41e26" stroke-width="1" opacity="0.5"/> <line x1="25" y1="65" x2="75" y2="65" stroke="#e41e26" stroke-width="1" opacity="0.5"/> </svg>
+                        <img src="assets/images/appliances/oven.webp" alt="Summit Oven Repair" width="120" height="120" style="object-fit: contain;">
                     </div>
-                    <a href="#" class="learn-more-btn" onclick="toggleService(this); return false;">Oven & Range Repair <span>Learn More</span></a>
+                    <a href="#" class="learn-more-btn" onclick="toggleService(this); return false;">Oven & Range Repair<span>Learn More</span></a>
                     <div class="service-types">
                         <h3>We Service All Types:</h3>
                         <ul>
@@ -1220,9 +1249,9 @@
                 </div>
                 <div class="service" id="bosch-refrigerator-repair">
                     <div class="service-image">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="120" height="120"> <rect x="20" y="5" width="60" height="90" rx="4" fill="#003087" stroke="#001a4d" stroke-width="2"/> <rect x="25" y="10" width="50" height="30" rx="2" fill="#e8e8e8"/> <line x1="50" y1="10" x2="50" y2="40" stroke="#ccc" stroke-width="1"/> <rect x="25" y="45" width="50" height="45" rx="2" fill="#e8e8e8"/> <line x1="50" y1="45" x2="50" y2="90" stroke="#ccc" stroke-width="1"/> <rect x="70" y="20" width="3" height="10" rx="1" fill="#888"/> <rect x="70" y="60" width="3" height="15" rx="1" fill="#888"/> <rect x="30" y="55" width="15" height="3" rx="1" fill="#4a7cc9"/> <rect x="30" y="62" width="15" height="3" rx="1" fill="#4a7cc9"/> </svg>
+                        <img src="assets/images/appliances/refrigerator.webp" alt="Summit Refrigerator Repair" width="120" height="120" style="object-fit: contain;">
                     </div>
-                    <a href="#" class="learn-more-btn" onclick="toggleService(this); return false;">Refrigerator Repair <span>Learn More</span></a>
+                    <a href="#" class="learn-more-btn" onclick="toggleService(this); return false;">Refrigerator Repair<span>Learn More</span></a>
                     <div class="service-types">
                         <h3>We Service All Types:</h3>
                         <ul>
@@ -1270,9 +1299,9 @@
                 </div>
                 <div class="service" id="bosch-dishwasher-repair">
                     <div class="service-image">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="120" height="120"> <rect x="15" y="10" width="70" height="80" rx="5" fill="#003087" stroke="#001a4d" stroke-width="2"/> <rect x="20" y="15" width="60" height="12" rx="2" fill="#e8e8e8"/> <rect x="20" y="32" width="60" height="53" rx="2" fill="#4a7cc9"/> <rect x="25" y="37" width="50" height="20" rx="2" fill="#e8e8e8" opacity="0.3"/> <circle cx="35" cy="47" r="5" fill="none" stroke="#fff" stroke-width="1.5"/> <circle cx="50" cy="47" r="5" fill="none" stroke="#fff" stroke-width="1.5"/> <circle cx="65" cy="47" r="5" fill="none" stroke="#fff" stroke-width="1.5"/> <rect x="30" y="65" width="40" height="3" rx="1" fill="#fff" opacity="0.5"/> <rect x="30" y="72" width="40" height="3" rx="1" fill="#fff" opacity="0.5"/> <circle cx="50" cy="21" r="3" fill="#e41e26"/> </svg>
+                        <img src="assets/images/appliances/dishwasher.webp" alt="Summit Dishwasher Repair" width="120" height="120" style="object-fit: contain;">
                     </div>
-                    <a href="#" class="learn-more-btn" onclick="toggleService(this); return false;">Dishwasher Repair <span>Learn More</span></a>
+                    <a href="#" class="learn-more-btn" onclick="toggleService(this); return false;">Dishwasher Repair<span>Learn More</span></a>
                     <div class="service-types">
                         <h3>We Service All Types:</h3>
                         <ul>
@@ -1320,9 +1349,9 @@
                 </div>
                 <div class="service" id="bosch-cooktop-repair">
                     <div class="service-image">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="120" height="120"> <rect x="10" y="25" width="80" height="50" rx="4" fill="#1a1a1a" stroke="#333" stroke-width="2"/> <circle cx="30" cy="42" r="12" fill="#333" stroke="#444" stroke-width="2"/> <circle cx="30" cy="42" r="8" fill="#e41e26" opacity="0.6"/> <circle cx="30" cy="42" r="4" fill="#e41e26"/> <circle cx="70" cy="42" r="12" fill="#333" stroke="#444" stroke-width="2"/> <circle cx="70" cy="42" r="8" fill="#e41e26" opacity="0.6"/> <circle cx="70" cy="42" r="4" fill="#e41e26"/> <circle cx="30" cy="62" r="8" fill="#333" stroke="#444" stroke-width="1"/> <circle cx="70" cy="62" r="8" fill="#333" stroke="#444" stroke-width="1"/> <rect x="45" y="30" width="10" height="8" rx="2" fill="#003087"/> </svg>
+                        <img src="assets/images/appliances/cooktop.webp" alt="Summit Cooktop Repair" width="120" height="120" style="object-fit: contain;">
                     </div>
-                    <a href="#" class="learn-more-btn" onclick="toggleService(this); return false;">Cooktop Repair <span>Learn More</span></a>
+                    <a href="#" class="learn-more-btn" onclick="toggleService(this); return false;">Cooktop Repair<span>Learn More</span></a>
                     <div class="service-types">
                         <h3>We Service All Types:</h3>
                         <ul>
@@ -1370,9 +1399,9 @@
                 </div>
                 <div class="service" id="bosch-microwave-repair">
                     <div class="service-image">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="120" height="120"> <rect x="10" y="20" width="80" height="55" rx="4" fill="#003087" stroke="#001a4d" stroke-width="2"/> <rect x="15" y="25" width="50" height="40" rx="2" fill="#1a1a1a"/> <rect x="18" y="28" width="44" height="34" rx="1" fill="#4a7cc9" opacity="0.3"/> <rect x="70" y="28" width="15" height="34" rx="2" fill="#e8e8e8"/> <circle cx="77" cy="38" r="4" fill="#333"/> <circle cx="77" cy="52" r="4" fill="#333"/> <rect x="73" y="45" width="8" height="2" rx="1" fill="#e41e26"/> <line x1="25" y1="45" x2="35" y2="45" stroke="#fff" stroke-width="2" opacity="0.5"/> <line x1="30" y1="40" x2="40" y2="50" stroke="#fff" stroke-width="2" opacity="0.5"/> </svg>
+                        <img src="assets/images/appliances/microwave.webp" alt="Summit Microwave Repair" width="120" height="120" style="object-fit: contain;">
                     </div>
-                    <a href="#" class="learn-more-btn" onclick="toggleService(this); return false;">Microwave Repair <span>Learn More</span></a>
+                    <a href="#" class="learn-more-btn" onclick="toggleService(this); return false;">Microwave Repair<span>Learn More</span></a>
                     <div class="service-types">
                         <h3>We Service All Types:</h3>
                         <ul>
@@ -1420,9 +1449,9 @@
                 </div>
                 <div class="service" id="bosch-wine-cooler-repair">
                     <div class="service-image">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="120" height="120"> <rect x="20" y="5" width="60" height="90" rx="4" fill="#003087" stroke="#001a4d" stroke-width="2"/> <rect x="25" y="10" width="50" height="80" rx="2" fill="#1a1a1a"/> <rect x="28" y="15" width="44" height="18" rx="1" fill="#4a7cc9" opacity="0.2"/> <rect x="28" y="36" width="44" height="18" rx="1" fill="#4a7cc9" opacity="0.2"/> <rect x="28" y="57" width="44" height="18" rx="1" fill="#4a7cc9" opacity="0.2"/> <ellipse cx="40" cy="24" rx="8" ry="3" fill="#722F37"/> <ellipse cx="55" cy="24" rx="8" ry="3" fill="#722F37"/> <ellipse cx="40" cy="45" rx="8" ry="3" fill="#722F37"/> <ellipse cx="55" cy="45" rx="8" ry="3" fill="#722F37"/> <ellipse cx="40" cy="66" rx="8" ry="3" fill="#722F37"/> <ellipse cx="55" cy="66" rx="8" ry="3" fill="#722F37"/> <rect x="75" y="40" width="3" height="15" rx="1" fill="#888"/> </svg>
+                        <img src="assets/images/appliances/wine-cooler.webp" alt="Summit Wine Cooler Repair" width="120" height="120" style="object-fit: contain;">
                     </div>
-                    <a href="#" class="learn-more-btn" onclick="toggleService(this); return false;">Wine Cooler Repair <span>Learn More</span></a>
+                    <a href="#" class="learn-more-btn" onclick="toggleService(this); return false;">Wine Cooler Repair<span>Learn More</span></a>
                     <div class="service-types">
                         <h3>We Service All Types:</h3>
                         <ul>
@@ -1470,9 +1499,9 @@
                 </div>
                 <div class="service" id="bosch-hood-vent-repair">
                     <div class="service-image">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="120" height="120"> <path d="M15 45 L25 20 L75 20 L85 45 Z" fill="#003087" stroke="#001a4d" stroke-width="2"/> <rect x="15" y="45" width="70" height="25" rx="2" fill="#003087" stroke="#001a4d" stroke-width="2"/> <rect x="40" y="5" width="20" height="15" rx="2" fill="#888"/> <rect x="20" y="50" width="25" height="8" rx="1" fill="#e8e8e8"/> <rect x="55" y="50" width="25" height="8" rx="1" fill="#e8e8e8"/> <circle cx="35" cy="63" r="3" fill="#e41e26"/> <circle cx="50" cy="63" r="3" fill="#4CAF50"/> <circle cx="65" cy="63" r="3" fill="#e8e8e8"/> <rect x="30" y="75" width="15" height="5" rx="1" fill="#ffeb3b" opacity="0.7"/> <rect x="55" y="75" width="15" height="5" rx="1" fill="#ffeb3b" opacity="0.7"/> </svg>
+                        <img src="assets/images/appliances/hood-vent.webp" alt="Summit Hood Vent Repair" width="120" height="120" style="object-fit: contain;">
                     </div>
-                    <a href="#" class="learn-more-btn" onclick="toggleService(this); return false;">Hood Vent Repair <span>Learn More</span></a>
+                    <a href="#" class="learn-more-btn" onclick="toggleService(this); return false;">Hood Vent Repair<span>Learn More</span></a>
                     <div class="service-types">
                         <h3>We Service All Types:</h3>
                         <ul>
@@ -1883,8 +1912,8 @@
                         <li><span class="footer-nolink">Home</span></li>
                         <li><span class="footer-nolink">Service Areas</span></li>
                         <li><span class="footer-nolink">Schedule Service</span></li>
-                        <li><span class="footer-nolink">Privacy Policy</span></li>
-                        <li><span class="footer-nolink">Terms of Service</span></li>
+                        <li><a href="#" class="modal-trigger" data-modal="privacyModal">Privacy Policy</a></li>
+                        <li><a href="#" class="modal-trigger" data-modal="termsModal">Terms of Service</a></li>
                     </ul>
                 </div>
             </div>
@@ -1895,8 +1924,8 @@
                     <span class="footer-nolink">Home</span>
                     <span class="footer-nolink">Service Areas</span>
                     <span class="footer-nolink">Schedule Service</span>
-                    <span class="footer-nolink">Privacy Policy</span>
-                    <span class="footer-nolink">Terms of Service</span>
+                    <a href="#" class="modal-trigger" data-modal="privacyModal">Privacy Policy</a>
+                    <a href="#" class="modal-trigger" data-modal="termsModal">Terms of Service</a>
                 </div>
                 <p>© 2025 Summit Appliance Repair NYC. All Rights Reserved.</p>
                 <p>Licensed & Insured • Factory Certified Technicians • Same-Day Service Available</p>
@@ -2221,5 +2250,175 @@
     <script>var emailjs=function(e){"use strict";class t{constructor(){let e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:0,t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"Network Error";this.status=e,this.text=t}}const i={origin:"https://api.emailjs.com",blockHeadless:!1,storageProvider:(()=>{if("undefined"!=typeof localStorage)return{get:e=>Promise.resolve(localStorage.getItem(e)),set:(e,t)=>Promise.resolve(localStorage.setItem(e,t)),remove:e=>Promise.resolve(localStorage.removeItem(e))}})()},r=e=>e?"string"==typeof e?{publicKey:e}:"[object Object]"===e.toString()?e:{}:{},o=function(e){let t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"https://api.emailjs.com";if(!e)return;const o=r(e);i.publicKey=o.publicKey,i.blockHeadless=o.blockHeadless,i.storageProvider=o.storageProvider,i.blockList=o.blockList,i.limitRate=o.limitRate,i.origin=o.origin||t},a=async function(e,r){let o=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{};const a=await fetch(i.origin+e,{method:"POST",headers:o,body:r}),s=await a.text(),n=new t(a.status,s);if(a.ok)return n;throw n},s=(e,t,i)=>{if(!e||"string"!=typeof e)throw"The public key is required. Visit https://dashboard.emailjs.com/admin/account";if(!t||"string"!=typeof t)throw"The service ID is required. Visit https://dashboard.emailjs.com/admin";if(!i||"string"!=typeof i)throw"The template ID is required. Visit https://dashboard.emailjs.com/admin/templates"},n=e=>e.webdriver||!e.languages||0===e.languages.length,l=()=>new t(451,"Unavailable For Headless Browser"),c=(e,t)=>{if((e=>!e.list?.length||!e.watchVariable)(e))return!1;((e,t)=>{if(!Array.isArray(e))throw"The BlockList list has to be an array";if("string"!=typeof t)throw"The BlockList watchVariable has to be a string"})(e.list,e.watchVariable);const i=(r=t,o=e.watchVariable,r instanceof FormData?r.get(o):r[o]);var r,o;return"string"==typeof i&&e.list.includes(i)},d=()=>new t(403,"Forbidden"),m=async(e,t,i)=>{if(!t.throttle||!i)return!1;((e,t)=>{if("number"!=typeof e||e<0)throw"The LimitRate throttle has to be a positive number";if(t&&"string"!=typeof t)throw"The LimitRate ID has to be a non-empty string"})(t.throttle,t.id);const r=t.id||e,o=await(async(e,t,i)=>{const r=Number(await i.get(e)||0);return t-Date.now()+r})(r,t.throttle,i);return o>0||(await i.set(r,Date.now().toString()),!1)},h=()=>new t(429,"Too Many Requests"),p=async(e,t,o,p)=>{const u=r(p),b=u.publicKey||i.publicKey,g=u.blockHeadless||i.blockHeadless,f=u.storageProvider||i.storageProvider,w={...i.blockList,...u.blockList},y={...i.limitRate,...u.limitRate};if(g&&n(navigator))return Promise.reject(l());if(s(b,e,t),(e=>{if(e&&"[object Object]"!==e.toString())throw"The template params have to be the object. Visit https://www.emailjs.com/docs/sdk/send/"})(o),o&&c(w,o))return Promise.reject(d());if(await m(location.pathname,y,f))return Promise.reject(h());const v={lib_version:"4.4.1",user_id:b,service_id:e,template_id:t,template_params:o};return a("/api/v1.0/email/send",JSON.stringify(v),{"Content-type":"application/json"})},u=async(e,t,o,p)=>{const u=r(p),b=u.publicKey||i.publicKey,g=u.blockHeadless||i.blockHeadless,f=i.storageProvider||u.storageProvider,w={...i.blockList,...u.blockList},y={...i.limitRate,...u.limitRate};if(g&&n(navigator))return Promise.reject(l());const v=(e=>"string"==typeof e?document.querySelector(e):e)(o);s(b,e,t),(e=>{if(!e||"FORM"!==e.nodeName)throw"The 3rd parameter is expected to be the HTML form element or the style selector of the form"})(v);const j=new FormData(v);return c(w,j)?Promise.reject(d()):await m(location.pathname,y,f)?Promise.reject(h()):(j.append("lib_version","4.4.1"),j.append("service_id",e),j.append("template_id",t),j.append("user_id",b),a("/api/v1.0/email/send-form",j))};var b={init:o,send:p,sendForm:u,EmailJSResponseStatus:t};return e.EmailJSResponseStatus=t,e.default=b,e.init=o,e.send=p,e.sendForm=u,Object.defineProperty(e,"__esModule",{value:!0}),e}({});emailjs.init({publicKey:'zfCrLmZU8eK9CuZcs'});</script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c124-171-7689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"f408497346e04e29b69182b74a219630","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c124-171-7689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"f408497346e04e29b69182b74a219630","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+
+    <!-- Modal Overlay -->
+    <div class="modal-overlay" id="modalOverlay"></div>
+
+    <!-- Reviews Modal -->
+    <div class="modal-card" id="reviewsModal">
+        <div class="modal-header">
+            <h2>Customer Reviews</h2>
+            <button class="modal-close" data-close="modal">&times;</button>
+        </div>
+        <div class="modal-content">
+            <div id="elfsightContainer">
+                <div class="elfsight-app-2942fb52-4463-41bc-bc83-d831b9da6f0e"></div>
+            </div>
+            <div style="text-align: center; margin-top: 25px; padding-top: 20px; border-top: 1px solid #eee;">
+                <button id="writeReviewBtn" style="background: linear-gradient(45deg, var(--red), #5a0f25); color: white; border: none; padding: 14px 35px; font-size: 16px; font-weight: 600; border-radius: 8px; cursor: pointer;">Write Your Review</button>
+                <p style="margin-top: 12px; color: #666; font-size: 14px;">Had a great experience? Help others by sharing your story!</p>
+            </div>
+            <div style="text-align: center; margin-top: 25px; padding: 25px; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border-radius: 12px;">
+                <p style="color: #fff; font-size: 18px; font-weight: 600; margin-bottom: 5px;">Ready to Book Your Repair?</p>
+                <p style="color: #aaa; font-size: 14px; margin-bottom: 15px;">Same-day service available across NYC!</p>
+                <button id="reviewsCallBtn" style="background: linear-gradient(45deg, var(--red), #5a0f25); color: white; border: none; padding: 14px 40px; font-size: 16px; font-weight: 600; border-radius: 8px; cursor: pointer;">Call Toll-Free</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Write Review Modal -->
+    <div class="modal-card" id="writeReviewModal" style="max-width: 500px;">
+        <div class="modal-header">
+            <h2>Write a Review</h2>
+            <button class="modal-close" data-close="modal">&times;</button>
+        </div>
+        <div class="modal-content">
+            <form id="reviewForm">
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Your Name *</label>
+                    <input type="text" id="reviewName" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 16px; box-sizing: border-box;">
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Your Rating *</label>
+                    <div id="starRating" style="display: flex; gap: 8px; font-size: 32px; cursor: pointer;">
+                        <span class="star" data-rating="1">☆</span>
+                        <span class="star" data-rating="2">☆</span>
+                        <span class="star" data-rating="3">☆</span>
+                        <span class="star" data-rating="4">☆</span>
+                        <span class="star" data-rating="5">☆</span>
+                    </div>
+                    <input type="hidden" id="reviewRating" value="0">
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Your Review *</label>
+                    <textarea id="reviewText" required rows="5" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 16px; box-sizing: border-box;" placeholder="Tell us about your experience..."></textarea>
+                </div>
+                <button type="submit" style="width: 100%; background: linear-gradient(45deg, var(--red), #5a0f25); color: white; border: none; padding: 14px; font-size: 16px; font-weight: 600; border-radius: 8px; cursor: pointer;">Submit Review</button>
+            </form>
+            <div id="reviewThankYou" style="display: none; text-align: center; padding: 40px 20px;">
+                <div style="font-size: 60px; margin-bottom: 20px;">✓</div>
+                <h3 style="color: #1a1a2e; margin-bottom: 15px;">Thank You for Your Review!</h3>
+                <p style="color: #666;">We appreciate you taking the time to share your experience.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div class="modal-card" id="privacyModal">
+        <div class="modal-header">
+            <h2>Privacy Policy</h2>
+            <button class="modal-close" data-close="modal">&times;</button>
+        </div>
+        <div class="modal-content">
+            <p><strong>Last Updated: January 2025</strong></p>
+            <p>Summit Appliance Repair NYC ("we," "our," or "us") is committed to protecting your privacy.</p>
+            <h3>Information We Collect</h3>
+            <ul>
+                <li><strong>Personal Data:</strong> Name, email, phone number when scheduling service.</li>
+                <li><strong>Service Information:</strong> Details about your appliances and repair needs.</li>
+            </ul>
+            <h3>How We Use Your Information</h3>
+            <ul>
+                <li>Provide and improve our repair services</li>
+                <li>Process service requests and send confirmations</li>
+                <li>Respond to your questions and requests</li>
+            </ul>
+            <h3>Contact Us</h3>
+            <p>Questions? Contact us through our website or call our service line.</p>
+        </div>
+    </div>
+
+    <!-- Terms of Service Modal -->
+    <div class="modal-card" id="termsModal">
+        <div class="modal-header">
+            <h2>Terms of Service</h2>
+            <button class="modal-close" data-close="modal">&times;</button>
+        </div>
+        <div class="modal-content">
+            <p><strong>Last Updated: January 2025</strong></p>
+            <p>By using our services, you agree to these Terms of Service.</p>
+            <h3>Services</h3>
+            <p>We provide Summit appliance repair in NYC including Manhattan, Brooklyn, Queens, and the Bronx.</p>
+            <h3>Governing Law</h3>
+            <p>These Terms are governed by the laws of the State of New York.</p>
+            <h3>Contact Us</h3>
+            <p>Questions? Contact us through our website or call our service line.</p>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        var modalOverlay = document.getElementById('modalOverlay');
+        var reviewsModal = document.getElementById('reviewsModal');
+        var writeReviewModal = document.getElementById('writeReviewModal');
+        var privacyModal = document.getElementById('privacyModal');
+        var termsModal = document.getElementById('termsModal');
+
+        function openModal(modalId) {
+            modalOverlay.classList.add('active');
+            document.getElementById(modalId).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeAllModals() {
+            if (modalOverlay) modalOverlay.classList.remove('active');
+            if (reviewsModal) reviewsModal.classList.remove('active');
+            if (writeReviewModal) writeReviewModal.classList.remove('active');
+            if (privacyModal) privacyModal.classList.remove('active');
+            if (termsModal) termsModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.querySelectorAll('.modal-trigger').forEach(function(trigger) {
+            trigger.addEventListener('click', function(e) {
+                e.preventDefault();
+                openModal(this.dataset.modal);
+            });
+        });
+
+        document.querySelectorAll('.modal-close').forEach(function(btn) {
+            btn.addEventListener('click', closeAllModals);
+        });
+
+        if (modalOverlay) modalOverlay.addEventListener('click', closeAllModals);
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeAllModals();
+        });
+
+        var writeReviewBtn = document.getElementById('writeReviewBtn');
+        if (writeReviewBtn) {
+            writeReviewBtn.addEventListener('click', function() {
+                reviewsModal.classList.remove('active');
+                writeReviewModal.classList.add('active');
+            });
+        }
+
+        var reviewsCallBtn = document.getElementById('reviewsCallBtn');
+        if (reviewsCallBtn) {
+            reviewsCallBtn.addEventListener('click', function() {
+                if (this.dataset.revealed) {
+                    window.location.href = 'tel:+1' + this.dataset.num;
+                    return;
+                }
+                var digits = [8, 0, 0, 7, 7, 8, 3, 5, 7, 2];
+                var num = digits.join('');
+                this.innerHTML = '+1 (' + num.slice(0,3) + ') ' + num.slice(3,6) + '-' + num.slice(6);
+                this.dataset.revealed = 'true';
+                this.dataset.num = num;
+            });
+        }
+    </script>
+    <script src="https://static.elfsight.com/platform/platform.js" async></script>
 </body>
 </html>
